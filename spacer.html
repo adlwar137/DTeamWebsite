@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<Title>Spacer Tool</Title>
+		<script>
+			function spacerize() {
+				var input = document.getElementById("spacer_input").value;
+
+				var all_spacers = document.getElementById("all_spacers").checked;
+
+				//This list must be sorted in order of length, descending.
+				var spacers = [
+					0.5,
+					0.375,
+					0.314961,
+					0.25,
+					0.181102,
+					0.125,
+				];
+
+				const spacer_names = [
+					"1/2 spacer",
+					"3/4 inch spacer",
+					"4.6mm spacer",
+					"1/4 spacer",
+					"8mm spacer",
+					"1/8 inch spacer",
+
+				];
+
+				var output = [];
+
+				if (all_spacers) {
+					for (var i = 0; i < spacers.length; i++) {
+						console.log("all spacers...");
+						console.log("finding out how many " + spacers[i] + " spacers");
+						var spacer_count = Math.floor(input/spacers[i]);	
+						console.log("found " + spacer_count + " " + spacers[i] + "inch spacers");
+						input = input - (spacer_count * spacers[i]);
+						//put number of spacers in number array
+						output.push(spacer_count);
+
+					}
+					for (var i = 0; i < output.length; i++) {
+						console.log(output[i] + " " + spacer_names[i]);
+						const p = document.createElement("p");
+						const p_text = document.createTextNode(output[i] + " " + spacer_names[i]);
+						p.appendChild(p_text);
+						document.body.appendChild(p);
+					}
+
+				}
+				
+
+			}
+
+
+		</script>
+	</head>
+	<body>
+		<h1>Spacer Tool</h1>
+		<input type="number" id="spacer_input" placeholder="Enter distance to be spacerized">
+		<button id="spacer_button" onclick="spacerize()">Spacerize</button>
+
+		<br>
+
+		<h3>Spacers to include</h1>
+		<input type="radio" name="all_spacers" value="all" id="all_spacers" checked>All Spacers<br>
+		<!--
+		<input type="radio" name="all_spacers" value="specific">Specific Spacers<br>
+		<ul id="spacer_list>
+			<li>
+				<label for="spacer_checkbox">0.5 inch spacer<label>
+				<input type="checkbox" id="1_2_spacer_checkbox">
+			</li>
+			<li>
+				<label for="spacer_checkbox">0.25 inch spacer<label>
+				<input type="checkbox" id="1_4_spacer_checkbox">
+			</li>
+			<li>
+				<label for="spacer_checkbox">0.125 inch spacer<label>
+				<input type="checkbox" id="1_8_spacer_checkbox">
+			</li>
+			<li>
+				<label for="spacer_checkbox">0.375 inch spacer<label>
+				<input type="checkbox" id="3_8_spacer_checkbox">
+			</li>
+			<li>
+
+				<label for="spacer_checkbox">4.6mm spacer<label>
+				<input type="checkbox" id="4_6mm_spacer_checkbox">
+			</li>
+			<li>
+				<label for="spacer_checkbox">8mm spacer<label>
+				<input type="checkbox" id="8mm_spacer_checkbox">
+			</li>
+		</ul>
+		-->
+	</body>
+</html>
